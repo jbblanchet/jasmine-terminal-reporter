@@ -1,7 +1,7 @@
-jasmine-terminal-reporter [![Build Status](https://travis-ci.org/jbblanchet/jasmine-terminal-reporter.svg?branch=master)](https://travis-ci.org/jbblanchet/jasmine-terminal-reporter)
-=========================
+# jasmine-terminal-reporter
+**A simple terminal reporter for Jasmine**, inspired by [juliemr/minijasminenode](https://github.com/juliemr/minijasminenode).
 
-A simple terminal reporter for Jasmine, inspired by [juliemr/minijasminenode](https://github.com/juliemr/minijasminenode).
+[![Build Status][travis-image]][travis-url] [![Dependency Status][david-image]][david-url]
 
 installation
 ------------
@@ -61,7 +61,7 @@ options
 
 * **`includeStackTrace`**: (Default: false) Displays the stack trace on failed tests
 
-* **`showColors`**: (Default: true) 
+* **`showColors`**: (Default: true)
 
 * **`done`**: Optional method to call when jasmine is done. First argument is true if all tests have passed
  or are pending.
@@ -69,3 +69,8 @@ options
 * **`formatStack`**: Optional method called to format the stack trace. Receives a string as the first parameter and returns the formatted stack trace.
 
 * **`print`**: Optionnal method used to display the output. By default, will write to process.stdout.
+
+[travis-image]: https://travis-ci.org/jbblanchet/jasmine-terminal-reporter.svg?branch=master
+[travis-url]: https://travis-ci.org/jbblanchet/jasmine-terminal-reporter
+[david-image]: https://david-dm.org/jbblanchet/jasmine-terminal-reporter.svg
+[david-url]: https://david-dm.org/jbblanchet/jasmine-terminal-reporter
