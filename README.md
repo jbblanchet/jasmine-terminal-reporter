@@ -1,4 +1,4 @@
-jasmine-terminal-reporter
+jasmine-terminal-reporter [![Build Status](https://travis-ci.org/jbblanchet/jasmine-terminal-reporter.svg?branch=master)](https://travis-ci.org/jbblanchet/jasmine-terminal-reporter)
 =========================
 
 A simple terminal reporter for Jasmine, inspired by [juliemr/minijasminenode](https://github.com/juliemr/minijasminenode).
