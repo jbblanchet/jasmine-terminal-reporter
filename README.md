@@ -66,7 +66,7 @@ options
 * **`done`**: Optional method to call when jasmine is done. First argument is true if all tests have passed
  or are pending.
 
-* **`formatStack`**: Optional method called to format the stack trace. Receives a string as the first parameter and returns the formatted stack trace.
+* **`stackFilter`**: Optional method called to format the stack trace. Receives a string as the first parameter and returns the formatted stack trace.
 
 * **`print`**: Optionnal method used to display the output. By default, will write to process.stdout.
 

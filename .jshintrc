@@ -18,6 +18,5 @@
     "strict": true,
     "maxlen": 120,
     "node": true,
-    "mocha": true,
     "globals": {}
 }
