@@ -25,6 +25,24 @@ module.exports = function (options) {
 
     var formatter = new Formatter(options);
 
+    function specFailureDetails (result, specIndex) {
+        formatter.printNewline();
+        formatter.print((specIndex + 1) + ') ');
+        formatter.print(result.fullName);
+
+        result.failedExpectations.forEach(function (expectation, expectIndex) {
+            formatter.printNewline();
+            formatter.print((specIndex + 1) + '.' + (expectIndex + 1) + ') ');
+            formatter.print(formatter.colorize('red', expectation.message));
+            if (options.includeStackTrace) {
+                formatter.printNewline();
+                formatter.print(formatter.indent(formatter.formatStack(expectation.stack), 4));
+            }
+        });
+
+        formatter.printNewline();
+    }
+
     this.jasmineStarted = function (specInfo) {
         if (options.isVerbose) {
             var plural = formatter.pluralize('spec', specInfo.totalSpecsDefined);
@@ -97,22 +115,4 @@ module.exports = function (options) {
             formatter.print(formatter.colorize('red', text));
         }
     };
-
-    function specFailureDetails (result, specIndex) {
-        formatter.printNewline();
-        formatter.print((specIndex + 1) + ') ');
-        formatter.print(result.fullName);
-
-        result.failedExpectations.forEach(function (expectation, expectIndex) {
-            formatter.printNewline();
-            formatter.print((specIndex + 1) + '.' + (expectIndex + 1) + ') ');
-            formatter.print(formatter.colorize('red', expectation.message));
-            if (options.includeStackTrace) {
-                formatter.printNewline();
-                formatter.print(formatter.indent(formatter.formatStack(expectation.stack), 4));
-            }
-        });
-
-        formatter.printNewline();
-    }
 };
