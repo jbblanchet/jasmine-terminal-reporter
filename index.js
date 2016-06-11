@@ -26,17 +26,14 @@ module.exports = function (options) {
     var formatter = new Formatter(options);
 
     function specFailureDetails (result, specIndex) {
-        formatter.printNewline();
-        formatter.print((specIndex + 1) + ') ');
-        formatter.print(result.fullName);
+        formatter.printLine((specIndex + 1) + ') ' + result.fullName);
 
         result.failedExpectations.forEach(function (expectation, expectIndex) {
-            formatter.printNewline();
-            formatter.print((specIndex + 1) + '.' + (expectIndex + 1) + ') ');
-            formatter.print(formatter.colorize('red', expectation.message));
+            formatter.printLine(
+                (specIndex + 1) + '.' + (expectIndex + 1) + ') ' + formatter.colorize('red', expectation.message)
+            );
             if (options.includeStackTrace) {
-                formatter.printNewline();
-                formatter.print(formatter.indent(formatter.formatStack(expectation.stack), 4));
+                formatter.printLine(formatter.indent(formatter.formatStack(expectation.stack), 4));
             }
         });
 
@@ -46,8 +43,7 @@ module.exports = function (options) {
     this.jasmineStarted = function (specInfo) {
         if (options.isVerbose) {
             var plural = formatter.pluralize('spec', specInfo.totalSpecsDefined);
-            formatter.print('Running ' + specInfo.totalSpecsDefined + ' ' + plural + '.');
-            formatter.printNewline();
+            formatter.printLine('Running ' + specInfo.totalSpecsDefined + ' ' + plural + '.');
         }
         specCount = 0;
         pendingCount = 0;
@@ -57,12 +53,10 @@ module.exports = function (options) {
     this.jasmineDone = function () {
         formatter.printNewline();
         if (failedSpecs.length) {
-            formatter.printNewline();
-            formatter.print('Failures: ');
+            formatter.printLine('Failures: ');
             failedSpecs.forEach(specFailureDetails);
         }
 
-        formatter.printNewline();
         var specCounts = specCount + ' ' + formatter.pluralize('spec', specCount) + ', ' +
             failedSpecs.length + ' ' + formatter.pluralize('failure', failedSpecs.length);
 
@@ -70,21 +64,17 @@ module.exports = function (options) {
             specCounts += ', ' + pendingCount + ' pending ' + formatter.pluralize('spec', pendingCount);
         }
 
-        formatter.print(specCounts);
+        formatter.printLine(specCounts);
 
-        formatter.printNewline();
         var seconds = options.timer.elapsed() / 1000;
-        formatter.print('Finished in ' + seconds + ' ' + formatter.pluralize('second', seconds));
-
-        formatter.printNewline();
+        formatter.printLine('Finished in ' + seconds + ' ' + formatter.pluralize('second', seconds));
 
         options.done(failedSpecs.length === 0);
     };
 
     this.suiteStarted = function (suite) {
         if (options.isVerbose) {
-            formatter.printNewline();
-            formatter.print(formatter.indent(suite.description, verboseIndent));
+            formatter.printLine(formatter.indent(suite.description, verboseIndent));
             verboseIndent += 2;
         }
     };
@@ -98,9 +88,6 @@ module.exports = function (options) {
     this.specDone = function (result) {
         specCount++;
         var text;
-        if (options.isVerbose) {
-            formatter.printNewline();
-        }
 
         if (result.status === 'pending') {
             pendingCount++;
@@ -113,6 +100,9 @@ module.exports = function (options) {
             failedSpecs.push(result);
             text = options.isVerbose ? formatter.indent(result.description + ': failed', verboseIndent + 2) : 'F';
             formatter.print(formatter.colorize('red', text));
+        }
+        if (options.isVerbose) {
+            formatter.printNewline();
         }
     };
 };
