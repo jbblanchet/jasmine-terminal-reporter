@@ -1,6 +1,6 @@
 {
     "name": "jasmine-terminal-reporter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A simple terminal reporter for Jasmine",
     "main": "index.js",
     "homepage": "https://github.com/jbblanchet/jasmine-terminal-reporter",
