@@ -29,6 +29,11 @@ module.exports = function (options) {
         this.print('\n');
     };
 
+    this.printLine = function (message) {
+        this.print(message);
+        this.printNewline();
+    };
+
     this.colorize = function (color, str) {
         return this.showColors ? (ansi[color] + str + ansi.none) : str;
     };

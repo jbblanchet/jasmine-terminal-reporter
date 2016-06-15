@@ -145,7 +145,7 @@ describe('The reporter', function () {
                 description: 'a good suite'
             });
 
-            assert.strictEqual(printed, '\na good suite');
+            assert.strictEqual(printed, 'a good suite\n');
         });
 
         it('indents the output correctly on nested suites', function () {
@@ -171,7 +171,7 @@ describe('The reporter', function () {
                 description: 'the best suite'
             });
 
-            assert.strictEqual(printed, '\na good suite\n  a better suite\n    the best suite');
+            assert.strictEqual(printed, 'a good suite\n  a better suite\n    the best suite\n');
         });
     });
 
@@ -244,8 +244,8 @@ describe('The reporter', function () {
                 description: 'the worst suite'
             });
 
-            assert.strictEqual(printed, '\na good suite\n  a better suite\n    the best suite' +
-                '\n  a worse suite\nthe worst suite');
+            assert.strictEqual(printed, 'a good suite\n  a better suite\n    the best suite' +
+                '\n  a worse suite\nthe worst suite\n');
         });
     });
 
@@ -326,7 +326,7 @@ describe('The reporter', function () {
 
                 reporter.specDone({ description: 'a spec that passes', status: 'passed' });
 
-                assert.strictEqual(printed, '\n\x1B[32m  a spec that passes: passed\x1B[0m');
+                assert.strictEqual(printed, '\x1B[32m  a spec that passes: passed\x1B[0m\n');
             });
 
             it('displays a pending spec correctly', function () {
@@ -342,7 +342,7 @@ describe('The reporter', function () {
 
                 reporter.specDone({ description: 'a pending spec', status: 'pending' });
 
-                assert.strictEqual(printed, '\n\x1B[33m  a pending spec: pending\x1B[0m');
+                assert.strictEqual(printed, '\x1B[33m  a pending spec: pending\x1B[0m\n');
             });
 
             it('displays a failed spec correctly', function () {
@@ -358,7 +358,7 @@ describe('The reporter', function () {
 
                 reporter.specDone({ description: 'a spec that fails', status: 'failed', failedExpectations: [] });
 
-                assert.strictEqual(printed, '\n\x1B[31m  a spec that fails: failed\x1B[0m');
+                assert.strictEqual(printed, '\x1B[31m  a spec that fails: failed\x1B[0m\n');
             });
         });
     });
@@ -394,7 +394,7 @@ describe('The reporter', function () {
 
             reporter.jasmineDone();
 
-            assert.strictEqual(printed, '\n\n' +
+            assert.strictEqual(printed, '\n' +
                 'Failures: \n' +
                 '1) a suite with a spec that fails\n' +
                 '1.1) \x1B[31mmessage 1\x1B[0m\n' +
@@ -434,7 +434,7 @@ describe('The reporter', function () {
 
             reporter.jasmineDone();
 
-            assert.strictEqual(printed, '\n\n' +
+            assert.strictEqual(printed, '\n' +
                 'Failures: \n' +
                 '1) a suite with a spec that fails\n' +
                 '1.1) \x1B[31mmessage 1\x1B[0m\n' +
@@ -467,7 +467,7 @@ describe('The reporter', function () {
 
             reporter.jasmineDone();
 
-            assert.strictEqual(printed, '\n\n' +
+            assert.strictEqual(printed, '\n' +
                 '1 spec, 0 failures, 1 pending spec\n' +
                 'Finished in 0 seconds\n');
 
@@ -495,7 +495,7 @@ describe('The reporter', function () {
 
             reporter.jasmineDone();
 
-            assert.strictEqual(printed, '\n\n' +
+            assert.strictEqual(printed, '\n' +
                 '1 spec, 0 failures\n' +
                 'Finished in 0 seconds\n');
 
