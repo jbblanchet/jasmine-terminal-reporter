@@ -101,7 +101,7 @@ module.exports = function (options) {
             text = options.isVerbose ? formatter.indent(result.description + ': failed', verboseIndent + 2) : 'F';
             formatter.print(formatter.colorize('red', text));
         }
-        if (options.isVerbose) {
+        if (options.isVerbose && result.status !== 'disabled') {
             formatter.printNewline();
         }
     };
