@@ -360,6 +360,36 @@ describe('The reporter', function () {
 
                 assert.strictEqual(printed, '\x1B[31m  a spec that fails: failed\x1B[0m\n');
             });
+
+            it('displays a non-disabled spec correctly', function () {
+                var printed = '';
+                var print = function (str) {
+                    printed += str;
+                };
+
+                var reporter = new Reporter({
+                    print: print,
+                    isVerbose: true
+                });
+
+                reporter.specDone({});
+                assert.strictEqual(printed, '\n');
+            });
+
+            it('displays a disabled spec correctly', function () {
+                var printed = '';
+                var print = function (str) {
+                    printed += str;
+                };
+
+                var reporter = new Reporter({
+                    print: print,
+                    isVerbose: true
+                });
+
+                reporter.specDone({ status: 'disabled' });
+                assert.strictEqual(printed, '');
+            });
         });
     });
 
